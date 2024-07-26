@@ -4,8 +4,14 @@ import { Metadata } from 'next';
 
 export async function generateMetadata({ params }): Promise<Metadata | undefined> {
   let post = getBlogPosts().find((post) => post.slug === params.slug);
+  if (!post) return;
+  let {
+    title = '',
+    publishedAt: publishedTime = '',
+    summary: description = '',
+    image = '',
+  } = post?.metadata || {};
 
-  let { title, publishedAt: publishedTime, summary: description, image } = post?.metadata;
   let ogImage = image
     ? `https://vikassatpute.com${image}`
     : `https://vikassatpute.com/og?title=${title}`;

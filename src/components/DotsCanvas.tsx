@@ -6,14 +6,17 @@ const DotsCanvas: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { dots, generateDots } = useGenerateDots();
 
-  const drawDots = (ctx: CanvasRenderingContext2D) => {
-    dots.forEach((dot) => {
-      ctx.fillStyle = dot.color;
-      ctx.beginPath();
-      ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
-      ctx.fill();
-    });
-  };
+  const drawDots = useCallback(
+    (ctx: CanvasRenderingContext2D) => {
+      dots.forEach((dot) => {
+        ctx.fillStyle = dot.color;
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    },
+    [dots],
+  );
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -81,7 +84,7 @@ const DotsCanvas: React.FC = () => {
     return () => {
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, [generateDots]);
+  }, [generateDots, dots.length]);
 
   useEffect(() => {
     if (dots.length === 0) return;
@@ -93,7 +96,7 @@ const DotsCanvas: React.FC = () => {
         drawDots(ctx);
       }
     }
-  }, [dots, drawDots]);
+  }, [dots, dots.length, drawDots]);
 
   return <canvas ref={canvasRef} className="absolute left-0 top-0 z-20 h-full w-full" />;
 };

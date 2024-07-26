@@ -11,7 +11,7 @@ function slugify(str) {
     .replace(/\-\-+/g, '-'); // Replace multiple - with single -
 }
 function createHeading(level) {
-  return ({ children }) => {
+  return function Heading({ children }) {
     let slug = slugify(children);
     return React.createElement(`h${level}`, { id: slug }, [
       React.createElement(
@@ -27,8 +27,19 @@ function createHeading(level) {
   };
 }
 function PageTitle() {
-  return ({ children }) => {
-    return React.createElement(`h1`, { className: 'color-gradient' }, children);
+  return function Title({ children }) {
+    return React.createElement(
+      `h1`,
+      {},
+      React.createElement(
+        'span',
+        {
+          key: `title`,
+          className: 'color-gradient',
+        },
+        [children],
+      ),
+    );
   };
 }
 let components = {
