@@ -1,6 +1,7 @@
 'use client';
 import Image from 'next/image';
 import React, { createContext, CSSProperties, ReactNode, useContext } from 'react';
+import StackIcon from 'tech-stack-icons';
 
 interface CssSliderContextType {
   height: number;
@@ -13,6 +14,7 @@ interface SliderProps extends CssSliderContextType {
 interface SliderItemProps extends CssSliderContextType {
   path: string;
   index: number;
+  grayscale?: boolean;
 }
 const CssSliderContext = createContext<CssSliderContextType | null>(null);
 // Create a custom hook to access the context
@@ -46,15 +48,15 @@ const CssSlider: React.FC<SliderProps> = ({ height, width, quantity, children })
   );
 };
 
-const CssSliderItem: React.FC<SliderItemProps> = ({ path, index }) => {
+const CssSliderItem: React.FC<SliderItemProps> = ({ path, index, grayscale }) => {
   const cssVariables = {
     '--position': index + 1,
   } as CSSProperties;
 
-  const { width, height } = useCssSlider();
+  // const { width, height } = useCssSlider();
   return (
     <div className="css_slider--item" style={cssVariables}>
-      <Image src={path} alt="html5" height={height} width={width}></Image>
+      <StackIcon name={path} />
     </div>
   );
 };

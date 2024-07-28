@@ -10,6 +10,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@codesandbox/sandpack-react": "^2.18.1",
     "@hookform/resolvers": "^3.9.0",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
@@ -29,10 +30,13 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.1",
     "react-syntax-highlighter": "^15.5.0",
+    "react-tweet": "^3.2.1",
     "remark-gfm": "^4.0.0",
     "styled-components": "^6.1.12",
+    "sugar-high": "^0.7.0",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
+    "tech-stack-icons": "^2.0.3",
     "ui": "github:shadcn/ui",
     "zod": "^3.23.8"
   },

@@ -1,18 +1,20 @@
 import { CustomMDX } from '@/components/mdx/mdx';
-import { getBlogPosts } from '@/lib/mdx';
-import React from 'react';
+import { getPageContent } from '@/lib/mdx';
+import React, { ReactNode } from 'react';
 
-async function MDXContainer({
-  slug,
-}: Readonly<{
-  slug: String;
-}>) {
-  const post = getBlogPosts().find((post) => post.slug === slug);
-  if (!post) return;
+type CustomMDXContainerType = {
+  content: string;
+  children?: ReactNode;
+};
+
+async function MDXContainer({ content, children }: CustomMDXContainerType) {
+  // const post = getPageContent().find((post) => post.slug === slug);
+  // if (!post) return;
 
   return (
-    <section className="prose mx-auto pb-32 pt-20 dark:prose-invert">
-      <CustomMDX source={post.content} />
+    <section className="prose-quoteless prose prose-neutral dark:prose-invert">
+      <CustomMDX source={content} />
+      {children && children}
     </section>
   );
 }

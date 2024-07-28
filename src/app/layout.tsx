@@ -10,10 +10,35 @@ const patua_One = Patua_One({
   variable: '--font-patua-one',
 });
 
-export const metadata: Metadata = {
-  title: 'Home: Vikas Satpute',
-  description: 'Home page web frontend developer',
-};
+export async function generateMetadata({ params }): Promise<Metadata | undefined> {
+  console.log({ params });
+  const title = 'Vikas Satpute';
+  const description = 'Web/Frontend developer';
+  let ogImage = `https://vikassatpute.com/og?title=${title}`;
+  console.log({ ogImage });
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      url: `https://vikassatpute.com/`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [ogImage],
+    },
+  };
+}
 
 export default function RootLayout({
   children,

@@ -17,6 +17,9 @@ function Navbar() {
           <ActiveLink href="projects">Projects</ActiveLink>
         </li>
         <li>
+          <ActiveLink href="blog">Blog</ActiveLink>
+        </li>
+        <li>
           <ActiveLink href="contact">Contact</ActiveLink>
         </li>
       </ul>
