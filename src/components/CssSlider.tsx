@@ -7,14 +7,16 @@ interface CssSliderContextType {
   height: number;
   width: number;
   quantity: number;
+  padding: string;
 }
 interface SliderProps extends CssSliderContextType {
   children: ReactNode;
 }
-interface SliderItemProps extends CssSliderContextType {
+interface SliderItemProps {
   path: string;
   index: number;
   grayscale?: boolean;
+  children?: ReactNode;
 }
 const CssSliderContext = createContext<CssSliderContextType | null>(null);
 // Create a custom hook to access the context
@@ -26,11 +28,12 @@ const useCssSlider = () => {
   return context;
 };
 
-const CssSlider: React.FC<SliderProps> = ({ height, width, quantity, children }) => {
+const CssSlider: React.FC<SliderProps> = ({ height, width, quantity, padding, children }) => {
   const cssVariables = {
     '--width': `${width}px`,
     '--height': `${height}px`,
     '--quantity': quantity,
+    '--padding': padding,
   } as CSSProperties;
 
   const contextValues = {

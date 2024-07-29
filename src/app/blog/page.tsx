@@ -16,30 +16,34 @@ export default function BlogPage() {
 
   return (
     <Container>
-      <h1 className="mb-8 text-2xl font-medium tracking-tighter">Read my thoughts</h1>
-      {allBlogs
-        .sort((a, b) => {
-          if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
-            return -1;
-          }
-          return 1;
-        })
-        .map((post) => (
-          <Link
-            key={post.slug}
-            className="mb-4 flex flex-col space-y-1"
-            href={`/blog/${post.slug}`}
-          >
-            <div className="flex w-full flex-col">
-              <p className="tracking-tight text-neutral-900 dark:text-neutral-100">
-                {post.metadata.title}
-              </p>
-              <Suspense fallback={<p className="h-6" />}>
-                <CustomMDX slug={post.slug} />
-              </Suspense>
-            </div>
-          </Link>
-        ))}
+      <div className="prose prose-invert">
+        <h1>
+          <span className="color-gradient">Read my thoughts</span>
+        </h1>
+        <div className="">
+          <ul>
+            {allBlogs
+              .sort((a, b) => {
+                if (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)) {
+                  return -1;
+                }
+                return 1;
+              })
+              .map((post) => (
+                <li>
+                  <Link key={post.slug} href={`/blog/${post.slug}`}>
+                    <p className="tracking-tight text-neutral-900 dark:text-neutral-100">
+                      {post.metadata.title}
+                    </p>
+                    <Suspense fallback={<p className="h-6" />}>
+                      <CustomMDX slug={post.slug} />
+                    </Suspense>
+                  </Link>
+                </li>
+              ))}
+          </ul>
+        </div>
+      </div>
     </Container>
   );
 }

@@ -128,6 +128,35 @@ function slugify(str) {
     .replace(/\-\-+/g, '-'); // Replace multiple - with single -
 }
 
+function createPageTitle(level) {
+  const Heading = ({ children }) => {
+    let slug = slugify(children);
+    return React.createElement(
+      `h${level}`,
+      { id: slug },
+      [
+        React.createElement('a', {
+          href: `#${slug}`,
+          key: `link-${slug}`,
+          className: 'anchor',
+        }),
+      ],
+      [
+        React.createElement(
+          'span',
+          {
+            className: 'color-gradient',
+          },
+          [children],
+        ),
+      ],
+    );
+  };
+
+  Heading.displayName = `Heading${level}`; // Add displayName here
+  return Heading;
+}
+
 function createHeading(level) {
   const Heading = ({ children }) => {
     let slug = slugify(children);
@@ -150,7 +179,7 @@ function createHeading(level) {
 }
 
 let components = {
-  h1: createHeading(1),
+  h1: createPageTitle(1),
   h2: createHeading(2),
   h3: createHeading(3),
   h4: createHeading(4),
