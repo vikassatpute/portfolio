@@ -20,6 +20,8 @@ export async function generateMetadata({ params }): Promise<Metadata | undefined
     ? `https://vikassatpute.com${image}`
     : `https://vikassatpute.com/og?title=${title}`;
 
+  console.log({ ogImage });
+
   return {
     title,
     description,

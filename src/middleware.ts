@@ -6,7 +6,7 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const requestHeaders = new Headers(request.headers)
   const pathname = request.nextUrl.pathname.replace('/', '')
-  console.log('from middleware', { pathname })
+  // console.log('from middleware', { pathname })
   request.headers.set('x-pathname', pathname)
 
   // You can also set request headers in NextResponse.rewrite

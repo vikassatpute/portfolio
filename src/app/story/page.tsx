@@ -4,7 +4,7 @@ import { getPageContent } from '@/lib/mdx';
 import { Metadata } from 'next';
 import { headers } from 'next/headers';
 export async function generateMetadata({ params }): Promise<Metadata | undefined> {
-  // console.log({ params });
+  console.log({ params });
   const title = 'Story: Vikas Satpute';
   const description = 'Web/Frontend developer';
   let ogImage = `https://vikassatpute.com/og?title=${title}`;
@@ -16,7 +16,7 @@ export async function generateMetadata({ params }): Promise<Metadata | undefined
     openGraph: {
       title,
       description,
-      type: 'article',
+      type: 'website',
       url: `https://vikassatpute.com/`,
       images: [
         {

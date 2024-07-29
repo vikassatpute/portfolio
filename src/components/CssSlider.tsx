@@ -40,6 +40,7 @@ const CssSlider: React.FC<SliderProps> = ({ height, width, quantity, padding, ch
     width: width,
     height: height,
     quantity: quantity,
+    padding: padding,
   };
 
   return (

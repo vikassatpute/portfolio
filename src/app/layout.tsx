@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Patua_One } from 'next/font/google';
 import './globals.css';
 import MainLayout from '@/layout/MainLayout';
+import NextTopLoader from 'nextjs-toploader';
 
 const inter = Inter({ subsets: ['latin'] });
 const patua_One = Patua_One({
@@ -10,35 +11,37 @@ const patua_One = Patua_One({
   variable: '--font-patua-one',
 });
 
-export async function generateMetadata({ params }): Promise<Metadata | undefined> {
-  console.log({ params });
-  const title = 'Vikas Satpute';
-  const description = 'Web/Frontend developer';
-  let ogImage = `https://vikassatpute.com/og?title=${title}`;
-  console.log({ ogImage });
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: 'article',
-      url: `https://vikassatpute.com/`,
-      images: [
-        {
-          url: ogImage,
-        },
-      ],
+export const metadata: Metadata = {
+  metadataBase: new URL('https://vikassatpute.com'),
+  title: {
+    default: 'Vikas Satpute',
+    template: '%s | Vikas Satpute',
+  },
+  description: 'Developer, writer',
+  openGraph: {
+    title: 'Vikas Satpute',
+    description: 'Developer, writer, and creator.',
+    url: 'https://vikassatpute.com',
+    siteName: 'Vikas Satpute',
+    locale: 'en_US',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
     },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      images: [ogImage],
-    },
-  };
-}
+  },
+  twitter: {
+    title: 'Vikas Satpute',
+    card: 'summary_large_image',
+  },
+};
 
 export default function RootLayout({
   children,
@@ -48,6 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} dark`}>
+        <NextTopLoader color="rgb(245 158 11)" />
         <MainLayout>{children}</MainLayout>
       </body>
     </html>

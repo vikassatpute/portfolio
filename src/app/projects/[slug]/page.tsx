@@ -1,11 +1,11 @@
 import Container from '@/components/Container';
 import MDXContainer from '@/layout/MDXContainer';
-import { getPageContent } from '@/lib/mdx';
+import { getProjectsContent } from '@/lib/mdx';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 export async function generateMetadata({ params }): Promise<Metadata | undefined> {
-  let post = getPageContent().find((post) => post.slug === params.slug);
+  let post = getProjectsContent().find((post) => post.slug === params.slug);
   if (!post) return;
   let {
     title = '',
@@ -42,8 +42,8 @@ export async function generateMetadata({ params }): Promise<Metadata | undefined
   };
 }
 export default async function ProjectPage({ params }: { params: { slug: string } }) {
-  let post = getPageContent().find((post) => post.slug === params.slug);
-  
+  let post = getProjectsContent().find((post) => post.slug === params.slug);
+  console.log({ post });
   if (!post) {
     notFound();
   }

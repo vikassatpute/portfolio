@@ -59,11 +59,15 @@ function getMDXData(dir) {
   });
 }
 
-export function getPageContent() {
-  return getMDXData(path.join(process.cwd(), 'content'));
+export function getProjectsContent() {
+  return getMDXData(path.join(process.cwd(), 'content/projects'));
 }
 
 export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), 'blog'));
+  return getMDXData(path.join(process.cwd(), 'content/blog'));
+}
+
+export function getPageContent() {
+  return getMDXData(path.join(process.cwd(), 'content/pages'));
 }
 

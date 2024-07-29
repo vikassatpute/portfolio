@@ -14,7 +14,7 @@ export default function ActiveLink({
   // Navigating to `/blog/hello-world` will return 'hello-world'
   // for the selected layout segment
   const segment = useSelectedLayoutSegment();
-  console.log({ segment });
+  // console.log({ segment });
   const isActive = href === segment;
 
   return (

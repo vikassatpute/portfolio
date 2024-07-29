@@ -18,7 +18,7 @@ export default function BlogPage() {
     <Container>
       <div className="prose prose-invert">
         <h1>
-          <span className="color-gradient">Read my thoughts</span>
+          <span className="color-gradient">my thoughts</span>
         </h1>
         <div className="">
           <ul>
@@ -30,7 +30,7 @@ export default function BlogPage() {
                 return 1;
               })
               .map((post) => (
-                <li>
+                <li key={post.metadata.title}>
                   <Link key={post.slug} href={`/blog/${post.slug}`}>
                     <p className="tracking-tight text-neutral-900 dark:text-neutral-100">
                       {post.metadata.title}
