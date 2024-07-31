@@ -5,6 +5,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { highlight } from 'sugar-high';
 import React from 'react';
 import { TweetComponent } from '../tweet';
+import CssSliderContainer from '../CssSliderContainer';
 // import { LiveCode } from './sandpack';
 
 function Table({ data }) {
@@ -193,6 +194,7 @@ let components = {
   StaticTweet: TweetComponent,
   code: Code,
   Table,
+  TechStackSlider: CssSliderContainer,
   // LiveCode,
 };
 

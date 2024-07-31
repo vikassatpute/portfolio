@@ -11,6 +11,7 @@ const patua_One = Patua_One({
   variable: '--font-patua-one',
 });
 
+// let ogImage = `https://vikassatpute.com/og?title=Web/Frontend%20Developer`;
 export const metadata: Metadata = {
   metadataBase: new URL('https://vikassatpute.com'),
   title: {
@@ -20,11 +21,16 @@ export const metadata: Metadata = {
   description: 'Developer, writer',
   openGraph: {
     title: 'Vikas Satpute',
-    description: 'Developer, writer, and creator.',
+    description: 'Developer, writer.',
     url: 'https://vikassatpute.com',
     siteName: 'Vikas Satpute',
     locale: 'en_US',
     type: 'website',
+    // images: [
+    //   {
+    //     url: ogImage,
+    //   },
+    // ],
   },
   robots: {
     index: true,
@@ -40,6 +46,7 @@ export const metadata: Metadata = {
   twitter: {
     title: 'Vikas Satpute',
     card: 'summary_large_image',
+    // images: [ogImage],
   },
 };
 
