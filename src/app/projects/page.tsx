@@ -1,5 +1,5 @@
 import Container from '@/components/Container';
-import CssSliderContainer from '@/components/CssSliderContainer';
+import SliderContainer from '@/components/SliderContainer';
 import useGetHeaders from '@/hooks/useGetHeaders';
 import MDXContainer from '@/layout/MDXContainer';
 import { getPageContent } from '@/lib/mdx';
@@ -15,7 +15,7 @@ export default async function ProjectsPage() {
   return (
     <Container>
       <MDXContainer content={post.content}>
-        <CssSliderContainer />
+        <SliderContainer />
       </MDXContainer>
     </Container>
   );

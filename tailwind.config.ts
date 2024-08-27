@@ -1,3 +1,5 @@
+// import LarkenFont from "./src/lib/larkenFont"
+// const LarkenFont = require('./src/lib/larkenFont');
 import type { Config } from "tailwindcss"
 import plugin from "tailwindcss"
 
@@ -15,10 +17,13 @@ const config = {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "768px",
       },
     },
     extend: {
+      fontFamily: {
+        larken: [`var(--font-larken)`],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

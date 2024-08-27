@@ -1,34 +1,35 @@
 'use client';
-import Image from 'next/image';
+
 import React, { createContext, CSSProperties, ReactNode, useContext } from 'react';
 import StackIcon from 'tech-stack-icons';
+import styles from '@/styles/ticker.module.css';
 
-interface CssSliderContextType {
+interface SliderContextType {
   height: number;
   width: number;
   quantity: number;
   padding: string;
 }
-interface SliderProps extends CssSliderContextType {
+interface SliderProps extends SliderContextType {
   children: ReactNode;
 }
 interface SliderItemProps {
   path: string;
   index: number;
-  grayscale?: boolean;
+
   children?: ReactNode;
 }
-const CssSliderContext = createContext<CssSliderContextType | null>(null);
+const SliderContext = createContext<SliderContextType | null>(null);
 // Create a custom hook to access the context
-const useCssSlider = () => {
-  const context = useContext(CssSliderContext);
+const useSlider = () => {
+  const context = useContext(SliderContext);
   if (!context) {
     throw new Error('context not available');
   }
   return context;
 };
 
-const CssSlider: React.FC<SliderProps> = ({ height, width, quantity, padding, children }) => {
+const Slider: React.FC<SliderProps> = ({ width, height, quantity, padding, children }) => {
   const cssVariables = {
     '--width': `${width}px`,
     '--height': `${height}px`,
@@ -44,25 +45,23 @@ const CssSlider: React.FC<SliderProps> = ({ height, width, quantity, padding, ch
   };
 
   return (
-    <CssSliderContext.Provider value={contextValues}>
-      <div className="css_slider" style={cssVariables}>
-        <div className="css_slider--list">{children}</div>
+    <SliderContext.Provider value={contextValues}>
+      <div className={styles.slider} style={cssVariables}>
+        <div className={styles.list}>{children}</div>
       </div>
-    </CssSliderContext.Provider>
+    </SliderContext.Provider>
   );
 };
 
-const CssSliderItem: React.FC<SliderItemProps> = ({ path, index, grayscale }) => {
+const SliderItem: React.FC<SliderItemProps> = ({ path, index }) => {
   const cssVariables = {
     '--position': index + 1,
   } as CSSProperties;
-
-  // const { width, height } = useCssSlider();
   return (
-    <div className="css_slider--item" style={cssVariables}>
+    <div className={styles.item} style={cssVariables}>
       <StackIcon name={path} />
     </div>
   );
 };
 
-export { CssSlider, CssSliderItem };
+export { Slider, SliderItem };

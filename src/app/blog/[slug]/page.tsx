@@ -8,6 +8,7 @@ import { CustomMDX } from '@/components/mdx/mdx';
 import { getBlogPosts } from '@/lib/mdx';
 import MDXContainer from '@/layout/MDXContainer';
 import Container from '@/components/Container';
+import Shimmer from '@/components/Shimmer';
 
 export async function generateMetadata({ params }): Promise<Metadata | undefined> {
   let post = getBlogPosts().find((post) => post.slug === params.slug);
@@ -87,44 +88,46 @@ export default function Blog({ params }) {
 
   return (
     <Container>
-      <script
-        type="application/ld+json"
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
-            headline: post.metadata.title,
-            datePublished: post.metadata.publishedAt,
-            dateModified: post.metadata.publishedAt,
-            description: post.metadata.summary,
-            image: post.metadata.image
-              ? `https://vikassatpute.com${post.metadata.image}`
-              : `https://vikassatpute.com/og?title=${post.metadata.title}`,
-            url: `https://vikassatpute.com/blog/${post.slug}`,
-            author: {
-              '@type': 'Person',
-              name: 'Vikas Satpute',
-            },
-          }),
-        }}
-      />
-      <h1 className="title max-w-[650px] text-2xl font-medium tracking-tighter">
-        {post.metadata.title}
-      </h1>
-      <div className="mb-8 mt-2 flex max-w-[650px] items-center justify-between text-sm">
-        <Suspense fallback={<p className="h-5" />}>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
-            {formatDate(post.metadata.publishedAt)}
-          </p>
-        </Suspense>
-        <Suspense fallback={<p className="h-5" />}>
-          <CustomMDX slug={post.slug} />
-        </Suspense>
-      </div>
-      <article>
-        <MDXContainer content={post.content} />
-      </article>
+      <Suspense fallback={<Shimmer />}>
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BlogPosting',
+              headline: post.metadata.title,
+              datePublished: post.metadata.publishedAt,
+              dateModified: post.metadata.publishedAt,
+              description: post.metadata.summary,
+              image: post.metadata.image
+                ? `https://vikassatpute.com${post.metadata.image}`
+                : `https://vikassatpute.com/og?title=${post.metadata.title}`,
+              url: `https://vikassatpute.com/blog/${post.slug}`,
+              author: {
+                '@type': 'Person',
+                name: 'Vikas Satpute',
+              },
+            }),
+          }}
+        />
+        <h1 className="title max-w-[650px] text-2xl font-medium tracking-tighter">
+          {post.metadata.title}
+        </h1>
+        <div className="mb-8 mt-2 flex max-w-[650px] items-center justify-between text-sm">
+          <Suspense fallback={<p className="h-5" />}>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              {formatDate(post.metadata.publishedAt)}
+            </p>
+          </Suspense>
+          <Suspense fallback={<p className="h-5" />}>
+            <CustomMDX slug={post.slug} />
+          </Suspense>
+        </div>
+        <article>
+          <MDXContainer content={post.content} />
+        </article>
+      </Suspense>
     </Container>
   );
 }

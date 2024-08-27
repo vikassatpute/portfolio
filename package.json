@@ -17,10 +17,13 @@
     "@next/mdx": "^14.2.5",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
+    "@react-three/drei": "^9.109.4",
     "@tailwindcss/typography": "^0.5.13",
     "@types/mdx": "^2.0.13",
+    "@uidotdev/usehooks": "^2.4.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "framer-motion": "^11.3.21",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.414.0",
     "mailersend": "^2.2.0",
@@ -39,6 +42,7 @@
     "tailwindcss-animate": "^1.0.7",
     "tech-stack-icons": "^2.0.3",
     "ui": "github:shadcn/ui",
+    "uuid": "^10.0.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -54,6 +58,6 @@
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.5",
     "tailwindcss": "^3.4.6",
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   }
 }

@@ -1,14 +1,5 @@
-import DotCanvasWrapper from '@/components/DotCanvasWrapper';
-import IntroSection2 from '@/components/IntroSection2';
-import { redirect } from 'next/navigation';
+import { LandingHero } from '@/components/Landing';
 
 export default function Home() {
-  // redirect(`/home`);
-  return (
-    <>
-      <DotCanvasWrapper />
-      {/* <IntroSections /> */}
-      <IntroSection2 />
-    </>
-  );
+  return <LandingHero />;
 }

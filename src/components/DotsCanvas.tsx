@@ -98,7 +98,7 @@ const DotsCanvas: React.FC = () => {
     }
   }, [dots, dots.length, drawDots]);
 
-  return <canvas ref={canvasRef} className="absolute left-0 top-0 z-20 h-full w-full" />;
+  return <canvas ref={canvasRef} className="z-2 absolute left-0 top-0 h-full w-full" />;
 };
 
 export default DotsCanvas;
