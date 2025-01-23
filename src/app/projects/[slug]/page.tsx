@@ -43,7 +43,6 @@ export async function generateMetadata({ params }): Promise<Metadata | undefined
 }
 export default async function ProjectPage({ params }: { params: { slug: string } }) {
   let post = getProjectsContent().find((post) => post.slug === params.slug);
-  console.log({ post });
   if (!post) {
     notFound();
   }

@@ -60,9 +60,9 @@
 }
 
 @layer base {
-  * {
+  /* * {
     @apply border-border;
-  }
+  } */
   body {
     @apply bg-background text-foreground;
   }
@@ -88,6 +88,7 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: transparent;
   }
   .color-gradient.right {
     --to: right;
@@ -133,9 +134,9 @@
   }
 }
 
-html {
+/* html {
   min-width: 360px;
-}
+} */
 
 .prose .anchor {
   @apply invisible absolute no-underline;
@@ -238,4 +239,8 @@ table {
 .title {
   text-wrap: balance;
 }
-@import './cssSlider.css';
+
+.ticker-wrapper {
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 10% 90%, transparent);
+}

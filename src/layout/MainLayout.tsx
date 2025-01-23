@@ -7,7 +7,7 @@ function MainLayout({
 }>) {
   return (
     <main className="overflow-hidden">
-      <section className="main-wrapper relative h-dvh overflow-y-auto bg-cover bg-fixed px-4">
+      <section className="main-wrapper relative h-dvh overflow-y-auto bg-cover bg-fixed">
         <div className="gradient fixed inset-0 z-10 h-full w-full"></div>
         <div className="relative z-10 h-dvh">{children}</div>
         <Navbar />

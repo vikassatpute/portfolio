@@ -5,7 +5,7 @@ interface Dot {
   size: number;
   color: string;
 }
-const arrayColors = ['#eee', '#545454', '#596d91', '#bb5a68', '#696541'];
+const arrayColors = ["#13FFAA", "#1E67C6", "#CE84CF", "#DD335C"];
 function useGenerateDots() {
   const [dots, setDots] = useState<Dot[]>([]);
 
@@ -15,7 +15,7 @@ function useGenerateDots() {
       newDots.push({
         x: Math.floor(Math.random() * canvas.width),
         y: Math.floor(Math.random() * canvas.height),
-        size: Math.floor(Math.random() * 3 + 5),
+        size: Math.floor(Math.random() * 3 + 1),
         color: arrayColors[Math.floor(Math.random() * arrayColors.length)],
       });
     }

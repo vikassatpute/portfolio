@@ -1,14 +1,42 @@
 import type { Metadata } from 'next';
 import { Inter, Patua_One } from 'next/font/google';
-import './globals.css';
+import localFont from 'next/font/local';
+
+import '@/styles/globals.css';
 import MainLayout from '@/layout/MainLayout';
 import NextTopLoader from 'nextjs-toploader';
 
-const inter = Inter({ subsets: ['latin'] });
+import LarkenFont from '@/lib/larkenFont';
+
 const patua_One = Patua_One({
   subsets: ['latin'],
   weight: '400',
   variable: '--font-patua-one',
+});
+
+const satoshi = localFont({
+  src: [
+    {
+      path: '../../public/fonts/Satoshi-Light.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Satoshi-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Satoshi-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Satoshi-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
 });
 
 // let ogImage = `https://vikassatpute.com/og?title=Web/Frontend%20Developer`;
@@ -56,8 +84,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} dark`}>
+    <html lang="en" className={`${LarkenFont.variable}`}>
+      <body className={`${satoshi.className} dark`}>
         <NextTopLoader color="rgb(245 158 11)" />
         <MainLayout>{children}</MainLayout>
       </body>
