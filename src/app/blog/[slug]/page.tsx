@@ -103,7 +103,7 @@ export default async function Blog({ params }) {
               </div>
             }
           >
-            <CustomMDX source={post.content} />
+            {/* Content is already rendered by MDXContainer */}
           </Suspense>
         </article>
       </Container>
