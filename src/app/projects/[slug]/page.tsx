@@ -41,13 +41,20 @@ export async function generateMetadata({ params }): Promise<Metadata | undefined
     },
   };
 }
+import SchemaScript from '@/components/SchemaScript';
+import { generateProjectSchema } from '@/lib/schema';
+
 export default async function ProjectPage({ params }: { params: { slug: string } }) {
   let post = getProjectsContent().find((post) => post.slug === params.slug);
   if (!post) {
     notFound();
   }
+
+  const projectSchema = generateProjectSchema(params.slug);
+
   return (
     <Container>
+      {projectSchema && <SchemaScript schema={projectSchema} />}
       <MDXContainer content={post.content} />
     </Container>
   );

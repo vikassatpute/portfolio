@@ -78,13 +78,21 @@ export const metadata: Metadata = {
   },
 };
 
+import SchemaScript from '@/components/SchemaScript';
+import { generateWebsiteSchema } from '@/lib/schema';
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const websiteSchema = generateWebsiteSchema();
+
   return (
     <html lang="en" className={`${LarkenFont.variable}`}>
+      <head>
+        <SchemaScript schema={websiteSchema} />
+      </head>
       <body className={`${satoshi.className} dark`}>
         <NextTopLoader color="rgb(245 158 11)" />
         <MainLayout>{children}</MainLayout>
