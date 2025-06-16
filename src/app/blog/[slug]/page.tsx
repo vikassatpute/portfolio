@@ -92,28 +92,34 @@ export default async function Blog({ params }) {
   const blogSchema = generateBlogPostSchema(params.slug);
 
   return (
-    <MDXContainer content={post.content}>
-      {blogSchema && <SchemaScript schema={blogSchema} />}
-      <Container>
-        <article className="prose-quoteless prose prose-neutral dark:prose-invert">
-          <Suspense
-            fallback={
-              <div className="h-4 w-20">
-                <Shimmer />
-              </div>
-            }
-          >
-            <CustomMDX source={post.content} />
-          </Suspense>
+    <Container>
+      <Suspense
+        fallback={
+          <div className="h-4 w-full">
+            <Shimmer />
+          </div>
+        }
+      >
+        {blogSchema && <SchemaScript schema={blogSchema} />}
+        <h1 className="title text-2xl font-medium tracking-tighter">{post.metadata.title}</h1>
+        <div className="mb-8 mt-2 text-sm">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            {formatDate(post.metadata.publishedAt)}
+          </p>
+
+          <CustomMDX slug={post.slug} />
+        </div>
+        <article>
+          <MDXContainer content={post.content} />
         </article>
-      </Container>
-    </MDXContainer>
+      </Suspense>
+    </Container>
+    // async function Views({ slug }: { slug: string }) {
   );
 }
 
 // let incrementViews = cache(increment);
 
-// async function Views({ slug }: { slug: string }) {
 //   let views = await getViewsCount();
 //   incrementViews(slug);
 //   return <ViewCounter allViews={views} slug={slug} />;
