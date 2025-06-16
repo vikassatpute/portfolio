@@ -92,11 +92,17 @@ export default async function Blog({ params }) {
   const blogSchema = generateBlogPostSchema(params.slug);
 
   return (
-    <MDXContainer>
+    <MDXContainer content={post.content}>
       {blogSchema && <SchemaScript schema={blogSchema} />}
       <Container>
-        <article className="prose prose-quoteless prose-neutral dark:prose-invert">
-          <Suspense fallback={<Shimmer className="h-4 w-20" />}>
+        <article className="prose-quoteless prose prose-neutral dark:prose-invert">
+          <Suspense
+            fallback={
+              <div className="h-4 w-20">
+                <Shimmer />
+              </div>
+            }
+          >
             <CustomMDX source={post.content} />
           </Suspense>
         </article>
