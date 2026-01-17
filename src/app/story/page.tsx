@@ -1,8 +1,10 @@
-import Container from '@/components/Container';
-import MDXContainer from '@/layout/MDXContainer';
-import { getPageContent } from '@/lib/mdx';
 import { Metadata } from 'next';
-import { headers } from 'next/headers';
+
+import Timeline from '@/components/timeline';
+import SkillsSnapshot from '@/components/skills-snapshot';
+import FeaturedProjects from '@/components/featured-projects';
+import { timeline, skills, featuredProjects } from '@/data/story-data';
+
 export async function generateMetadata({ params }): Promise<Metadata | undefined> {
   console.log({ params });
   const title = 'Story: Vikas Satpute';
@@ -32,14 +34,15 @@ export async function generateMetadata({ params }): Promise<Metadata | undefined
     },
   };
 }
+
 export default async function StoryPage() {
-  const headersList = headers();
-  const pathname = headersList.get('X-Pathname');
-  const post = getPageContent().find((post) => post.slug === pathname);
-  if (!post) return;
-  return (
-    <Container>
-      <MDXContainer content={post.content} />
-    </Container>
-  );
+  <main className="container mx-auto max-w-5xl space-y-20 px-4 py-16">
+    {/* ‣ intro / hero sections here … */}
+
+    <Timeline items={timeline} />
+    <SkillsSnapshot data={skills} />
+    <FeaturedProjects projects={featuredProjects} />
+
+    {/* ‣ any other specialised sections … */}
+  </main>;
 }

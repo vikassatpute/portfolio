@@ -5,6 +5,7 @@ function MainLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log({ children });
   return (
     <main className="overflow-hidden">
       <section className="main-wrapper relative h-dvh overflow-y-auto bg-cover bg-fixed">
